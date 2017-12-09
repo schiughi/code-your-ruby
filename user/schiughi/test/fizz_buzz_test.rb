@@ -39,7 +39,7 @@ class FizzBuzzTest < Minitest::Test
   end
 
   # 入力された値がnilの場合、nilを返却する
-  def test_non_numeric_text_case
+  def test_nil_case
     assert_nil fizz_buzz(nil)
   end
 
@@ -62,8 +62,51 @@ class FizzBuzzTest < Minitest::Test
   end
 
   # fizz,buzzの値を0に変更した場合、nilを返却する
-  def test_custom_fizz_buzz_to_nil_case
+  def test_custom_fizz_buzz_to_zero_case
     assert_nil fizz_buzz(28, fizz: 0)
     assert_nil fizz_buzz(30, buzz: 0)
+  end
+
+  # fizz,buzzの値をnilに変更した場合、nilを返却する
+  def test_custom_fizz_buzz_to_nil_case
+    assert_nil fizz_buzz(28, fizz: nil)
+    assert_nil fizz_buzz(30, buzz: nil)
+  end
+
+  # 入力された値が文字列の場合、例外を投げる
+  def test_strict_text_case
+    assert_raises ArgumentError do
+      fizz_buzz!("312")
+    end
+    assert_raises ArgumentError do
+      fizz_buzz!("10000aaa")
+    end
+  end
+
+  # 入力された値がnilの場合、例外を投げる
+  def test_strict_nil_case
+    assert_raises ArgumentError do
+      fizz_buzz!(nil)
+    end
+  end
+
+  # fizz,buzzの値を0に変更した場合、例外を投げる
+  def test_strict_custom_fizz_to_zero_case
+    assert_raises ArgumentError do
+      fizz_buzz!(28, fizz: 0)
+    end
+    assert_raises ArgumentError do
+      fizz_buzz!(30, buzz: 0)
+    end
+  end
+
+  # fizz,buzzの値をnilに変更した場合、例外を投げる
+  def test_strict_custom_buzz_to_nil_case
+    assert_raises ArgumentError do
+      fizz_buzz!(28, fizz: nil)
+    end
+    assert_raises ArgumentError do
+      fizz_buzz!(30, buzz: nil)
+    end
   end
 end

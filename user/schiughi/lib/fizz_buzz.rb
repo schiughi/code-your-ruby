@@ -20,10 +20,9 @@ class FizzBuzz
   end
 
   def valid?
-    return false if @number.nil?
     return false unless @number.kind_of?(Numeric)
-    return false if @fizz.zero?
-    return false if @buzz.zero?
+    return false if @fizz.to_i.zero?
+    return false if @buzz.to_i.zero?
     true
   end
 
